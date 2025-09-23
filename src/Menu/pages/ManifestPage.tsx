@@ -88,7 +88,6 @@ const ManifestPage: React.FC = () => {
   });
 
   const handleTambahManifest = () => {
-    // Logic untuk menambah manifest
     console.log('Tambah manifest clicked');
   };
 
