@@ -68,7 +68,7 @@ export const LoginScreen = () => {
             </div>
             <button
               type="submit"
-              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3"
+              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3 text-white"
             >
               <LucideLogIn /> Masuk
             </button>
@@ -117,7 +117,7 @@ export const LoginScreen = () => {
             </div>
             <button
               type="submit"
-              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3"
+              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3 text-white"
             >
               <LucideLogIn /> Masuk via OSS NIB
             </button>
