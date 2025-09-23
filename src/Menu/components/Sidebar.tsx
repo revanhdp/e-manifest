@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'manifest', onItemClick 
         
         <div className="w-8"></div> {/* Spacer for balance */}
 
-        {/* Overlay - hanya muncul saat menu terbuka */}
+        {/* Overlay */}
         {mobileMenuOpen && (
           <div 
             className="fixed inset-0 z-40 transition-opacity duration-300"
@@ -52,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'manifest', onItemClick 
           />
         )}
         
-        {/* Slide Menu dengan animasi */}
+        {/* Slide Menu */}
         <div className={`fixed top-0 left-0 bottom-0 w-64 bg-blue-600 z-50 shadow-2xl transition-transform duration-300 ease-in-out ${
           mobileMenuOpen ? 'transform translate-x-0' : 'transform -translate-x-full'
         }`}>
