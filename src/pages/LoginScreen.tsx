@@ -1,5 +1,6 @@
 import { IdCard, KeyRound, LucideLogIn, User2, User2Icon } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const LoginScreen = () => {
   const [isUser, setIsUser] = useState(true);
@@ -75,9 +76,9 @@ export const LoginScreen = () => {
 
             <p className="text-slate-700 font-medium text-center mt-10 ">
               Belum punya akun?{" "}
-              <span className="text-[#0D47A1] cursor-pointer">
+              <Link to="/register" className="text-[#0D47A1] cursor-pointer">
                 Daftar di sini
-              </span>
+              </Link>
             </p>
           </form>
         ) : (
@@ -124,9 +125,9 @@ export const LoginScreen = () => {
 
             <p className="text-slate-700 font-medium text-center mt-10 ">
               Belum punya akun?{" "}
-              <span className="text-[#0D47A1] cursor-pointer">
+              <Link to="/register" className="text-[#0D47A1] cursor-pointer">
                 Daftar di sini
-              </span>
+              </Link>
             </p>
           </form>
         )}

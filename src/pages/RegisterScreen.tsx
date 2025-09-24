@@ -1,13 +1,6 @@
-import {
-  Building,
-  CircleUserRoundIcon,
-  IdCard,
-  KeyRound,
-  LucideLogIn,
-  User2,
-  User2Icon,
-} from "lucide-react";
+import { Building, CircleUserRoundIcon } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const RegisterScreen = () => {
   const [isUser, setIsUser] = useState(true);
@@ -147,9 +140,9 @@ export const RegisterScreen = () => {
 
               <p className="text-slate-700 font-medium text-center mt-7 ">
                 Belum punya akun?{" "}
-                <span className="text-[#0D47A1] cursor-pointer font-bold">
+                <Link to="/" className="text-[#0D47A1] cursor-pointer">
                   Login di sini
-                </span>
+                </Link>
               </p>
             </form>
           ) : (
@@ -209,7 +202,10 @@ export const RegisterScreen = () => {
                   />
                 </div>
                 <div className="w-1/2 flex flex-col gap-2">
-                  <label htmlFor="" className="font-medium ml-1 truncate text-sm">
+                  <label
+                    htmlFor=""
+                    className="font-medium ml-1 truncate text-sm"
+                  >
                     Nomor SK Izin Penyelenggaraan Angkutan Barang (OSS)
                   </label>
                   <input
@@ -273,9 +269,9 @@ export const RegisterScreen = () => {
 
               <p className="text-slate-700 font-medium text-center mt-7 ">
                 Belum punya akun?{" "}
-                <span className="text-[#0D47A1] cursor-pointer font-bold">
+                <Link to="/" className="text-[#0D47A1] cursor-pointer">
                   Login di sini
-                </span>
+                </Link>
               </p>
             </form>
           )}
