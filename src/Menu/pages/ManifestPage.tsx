@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import DropdownFilter from '../components/DropdownFilter';
 import ManifestTable from '../components/ManifestTable';
+import BuatManifestPage from './BuatManifestPage';
 
 interface ManifestData {
   id: string;
@@ -14,6 +15,7 @@ interface ManifestData {
 }
 
 const ManifestPage: React.FC = () => {
+  const [showBuatManifest, setShowBuatManifest] = useState(false);
   const [filters, setFilters] = useState({
     kategoriMuatan: '',
     jenisMuatan: '',
@@ -88,13 +90,20 @@ const ManifestPage: React.FC = () => {
   });
 
   const handleTambahManifest = () => {
-    // Logic untuk menambah manifest
-    console.log('Tambah manifest clicked');
+    setShowBuatManifest(true);
   };
+
+  const handleBackToManifest = () => {
+    setShowBuatManifest(false);
+  };
+
+  if (showBuatManifest) {
+    return <BuatManifestPage onBack={handleBackToManifest} />;
+  }
 
   return (
     <div className="p-6 bg-gray-50 min-h-full">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
         {/* Header with Title and Add Button */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-gray-900">Manifest</h1>

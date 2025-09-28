@@ -7,7 +7,7 @@ import PengemudiPage from './PengemudiPage';
 import ProfilPage from './ProfilPage';
 
 const Navigation: React.FC = () => {
-  const [activeMenuItem, setActiveMenuItem] = useState('manifest');
+  const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
 
   const handleMenuItemClick = (item: string) => {
     setActiveMenuItem(item);
@@ -37,7 +37,7 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="h-screen bg-[F3F5F7]">
       {/* Mobile: Stack header on top, Desktop: Side by side */}
       <div className="md:flex md:h-full">
         <Sidebar 
