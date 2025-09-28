@@ -1,5 +1,6 @@
 import { IdCard, KeyRound, LucideLogIn, User2, User2Icon } from "lucide-react";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const LoginScreen = () => {
   const [isUser, setIsUser] = useState(true);
@@ -68,16 +69,16 @@ export const LoginScreen = () => {
             </div>
             <button
               type="submit"
-              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3"
+              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3 text-white"
             >
               <LucideLogIn /> Masuk
             </button>
 
             <p className="text-slate-700 font-medium text-center mt-10 ">
               Belum punya akun?{" "}
-              <span className="text-[#0D47A1] cursor-pointer">
+              <Link to="/register" className="text-[#0D47A1] cursor-pointer">
                 Daftar di sini
-              </span>
+              </Link>
             </p>
           </form>
         ) : (
@@ -117,16 +118,16 @@ export const LoginScreen = () => {
             </div>
             <button
               type="submit"
-              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3"
+              className="mt-6 bg-[#0D47A1] w-full flex justify-center items-center py-3 rounded-4xl gap-3 text-white"
             >
               <LucideLogIn /> Masuk via OSS NIB
             </button>
 
             <p className="text-slate-700 font-medium text-center mt-10 ">
               Belum punya akun?{" "}
-              <span className="text-[#0D47A1] cursor-pointer">
+              <Link to="/register" className="text-[#0D47A1] cursor-pointer">
                 Daftar di sini
-              </span>
+              </Link>
             </p>
           </form>
         )}
