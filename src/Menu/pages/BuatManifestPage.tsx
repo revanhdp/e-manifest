@@ -2,15 +2,49 @@ import React, { useState } from 'react';
 import { ChevronUp } from 'lucide-react';
 import DataPemilikBarang from './BuatManifestSection/DataPemilikBarang';
 import DataPenerimaBarang from './BuatManifestSection/DataPenerimaBarang';
+import PackingList from './BuatManifestSection/PackingList';
 
 interface BuatManifestPageProps {
   onBack: () => void;
 }
 
+interface PackingItem {
+  id: string;
+  jenisBarang: string;
+  namaBarang: string;
+  jumlah: string;
+  satuan: string;
+}
+
+interface FormData {
+  // Step 1 data
+  nibPerusahaan: string;
+  namaPerusahaan: string;
+  nomorTelefonPerusahaan: string;
+  nibPerusahaanDetail: string;
+  nomor_oss: string;
+  namaPenanggungJawab: string;
+  nomorHpPenanggungJawab: string;
+  alamatPerusahaan: string;
+  // Step 2 data
+  nibPerusahaanPenerima: string;
+  namaPerusahaanPenerima: string;
+  nomorTelefonPerusahaanPenerima: string;
+  nibPerusahaanDetailPenerima: string;
+  nomor_ossPenerima: string;
+  namaPenanggungJawabPenerima: string;
+  nomorHpPenanggungJawabPenerima: string;
+  alamatPerusahaanPenerima: string;
+  // Step 3 data
+  packingItems: PackingItem[];
+  // Index signature to allow flexible access
+  [key: string]: string | PackingItem[];
+}
+
 const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isDetailExpanded, setIsDetailExpanded] = useState(true);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     // Step 1 data
     nibPerusahaan: '',
     namaPerusahaan: '',
@@ -21,13 +55,16 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
     nomorHpPenanggungJawab: '',
     alamatPerusahaan: '',
     // Step 2 data
+    nibPerusahaanPenerima: '',
     namaPerusahaanPenerima: '',
     nomorTelefonPerusahaanPenerima: '',
-    nibPerusahaanPenerima: '',
+    nibPerusahaanDetailPenerima: '',
     nomor_ossPenerima: '',
     namaPenanggungJawabPenerima: '',
     nomorHpPenanggungJawabPenerima: '',
-    alamatPerusahaanPenerima: ''
+    alamatPerusahaanPenerima: '',
+    // Step 3 data
+    packingItems: []
   });
 
   const steps = [
@@ -38,7 +75,7 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
     { number: 5, title: 'Rute perjalanan', active: currentStep === 5 }
   ];
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string | PackingItem[]) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -46,8 +83,13 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
   };
 
   const handleCekClick = () => {
-    console.log('Cek NIB clicked:', formData.nibPerusahaan);
-    // Logic for checking NIB will be implemented here
+    if (currentStep === 1) {
+      console.log('Cek NIB Pemilik clicked:', formData.nibPerusahaan);
+      // Logic for checking NIB pemilik will be implemented here
+    } else if (currentStep === 2) {
+      console.log('Cek NIB Penerima clicked:', formData.nibPerusahaanPenerima);
+      // Logic for checking NIB penerima will be implemented here
+    }
   };
 
   // Validasi untuk setiap step
@@ -65,17 +107,17 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
         );
       case 2:
         return !!(
+          formData.nibPerusahaanPenerima &&
           formData.namaPerusahaanPenerima &&
           formData.nomorTelefonPerusahaanPenerima &&
-          formData.nibPerusahaanPenerima &&
+          formData.nibPerusahaanDetailPenerima &&
           formData.nomor_ossPenerima &&
           formData.namaPenanggungJawabPenerima &&
           formData.nomorHpPenanggungJawabPenerima &&
           formData.alamatPerusahaanPenerima
         );
       case 3:
-        // Validasi untuk step 3 akan ditambahkan nanti
-        return true;
+        return Array.isArray(formData.packingItems) && formData.packingItems.length > 0;
       case 4:
         // Validasi untuk step 4 akan ditambahkan nanti
         return true;
@@ -127,13 +169,20 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
     if (currentStep === 1) {
       return (
         <DataPemilikBarang 
-          formData={formData}
+          formData={formData as Record<string, string>}
           handleInputChange={handleInputChange}
         />
       );
     } else if (currentStep === 2) {
       return (
         <DataPenerimaBarang 
+          formData={formData as Record<string, string>}
+          handleInputChange={handleInputChange}
+        />
+      );
+    } else if (currentStep === 3) {
+      return (
+        <PackingList 
           formData={formData}
           handleInputChange={handleInputChange}
         />
@@ -194,31 +243,38 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
         {/* Separator Line */}
         <div className="w-full h-px bg-gray-200 mb-5"></div>
 
-        {/* NIB Input Section */}
-        <div className="mb-8 max-w-xl">
-          <div className=" bg-white">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Masukkan NIB perusahaan</h3>
-            <p className="text-gray-600 mb-4">
-              Masukkan NIB, kemudian pilih Cek untuk mengisi detail perusahaan secara otomatis.
-            </p>
-            
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Contoh: 1234567890123"
-                value={formData.nibPerusahaan}
-                onChange={(e) => handleInputChange('nibPerusahaan', e.target.value)}
-                className="w-full px-4 py-2 pr-20 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-              <button
-                onClick={handleCekClick}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1 text-blue-600 bg-white hover:bg-blue-50 rounded font-bold transition-colors text-sm"
-              >
-                Cek
-              </button>
+        {/* NIB Input Section - Only show in step 1 and 2 */}
+        {(currentStep === 1 || currentStep === 2) && (
+          <div className="mb-8 max-w-xl">
+            <div className=" bg-white">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">
+                {currentStep === 1 ? 'Masukkan NIB perusahaan pemilik' : 'Masukkan NIB perusahaan penerima'}
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Masukkan NIB, kemudian pilih Cek untuk mengisi detail perusahaan secara otomatis.
+              </p>
+              
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Contoh: 1234567890123"
+                  value={currentStep === 1 ? formData.nibPerusahaan : formData.nibPerusahaanPenerima}
+                  onChange={(e) => handleInputChange(
+                    currentStep === 1 ? 'nibPerusahaan' : 'nibPerusahaanPenerima', 
+                    e.target.value
+                  )}
+                  className="w-full px-4 py-2 pr-20 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <button
+                  onClick={handleCekClick}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1 text-blue-600 bg-white hover:bg-blue-50 rounded font-bold transition-colors text-sm"
+                >
+                  Cek
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Form Section */}
         <div className="space-y-6">
@@ -228,7 +284,9 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
               onClick={() => setIsDetailExpanded(!isDetailExpanded)}
             >
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                {currentStep === 1 ? 'Detail Data Pemilik Barang' : 'Detail Data Penerima Barang'}
+                {currentStep === 1 && 'Detail Data Pemilik Barang'}
+                {currentStep === 2 && 'Detail Data Penerima Barang'}
+                {currentStep === 3 && 'Detail Packing List'}
               </h3>
               <ChevronUp 
                 className={`w-5 h-5 text-gray-500 transition-transform ${
@@ -251,10 +309,13 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
         {/* Action Buttons */}
         <div className="flex flex-col gap-3 pt-6">
           {/* Validation Message */}
-          {!validateStep(currentStep) && currentStep <= 2 && (
+          {!validateStep(currentStep) && currentStep <= 3 && (
             <div className="px-4 py-2 bg-yellow-50 border border-yellow-200 rounded-lg">
               <p className="text-sm text-yellow-800">
-                Mohon lengkapi semua field yang diperlukan sebelum melanjutkan ke step berikutnya.
+                {currentStep === 3 
+                  ? 'Mohon tambahkan minimal 1 item barang sebelum melanjutkan ke step berikutnya.'
+                  : 'Mohon lengkapi semua field yang diperlukan sebelum melanjutkan ke step berikutnya.'
+                }
               </p>
             </div>
           )}

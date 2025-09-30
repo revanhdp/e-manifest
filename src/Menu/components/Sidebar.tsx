@@ -90,7 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'manifest', onItemClick 
                   >
                     <button
                       onClick={() => handleItemClick(item.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-lg transition-all duration-200 ${
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-left rounded-full transition-all duration-200 ${
                         isActive
                           ? 'bg-blue-500 text-white shadow-lg transform scale-105'
                           : 'text-blue-100 hover:bg-blue-500 hover:text-white hover:transform hover:scale-105'

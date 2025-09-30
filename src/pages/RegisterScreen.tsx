@@ -38,7 +38,7 @@ export const RegisterScreen = () => {
                 <label htmlFor="" className="font-medium text-slate-700">
                   NIK (Username) <br />{" "}
                   <span className="text-sm text-slate-600">
-                    Masukkan NIK, lalu klik Cek untuk mengisi data secara
+                    Masukkan NIK, lalu klik Cek untuk mengisi data secara
                     otomatis. NIK menjadi username Anda.
                   </span>
                 </label>
@@ -151,7 +151,7 @@ export const RegisterScreen = () => {
                 <label htmlFor="" className="font-medium text-slate-700">
                   NIB Perusahaan (Username) <br />{" "}
                   <span className="text-sm text-slate-600">
-                    Masukkan NIK, lalu klik Cek untuk mengisi data secara
+                    Masukkan NIK, lalu klik Cek untuk mengisi data secara
                     otomatis. NIK menjadi username Anda.
                   </span>
                 </label>
