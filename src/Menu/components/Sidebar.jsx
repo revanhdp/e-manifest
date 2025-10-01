@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { LogOut, Truck, Menu, X } from 'lucide-react';
 
-interface SidebarProps {
-  activeItem?: string;
-  onItemClick?: (item: string) => void;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'manifest', onItemClick }) => {
+const Sidebar = ({ activeItem = 'manifest', onItemClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const menuItems = [
@@ -17,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem = 'manifest', onItemClick 
     { id: 'profil', label: 'Profil'},
   ];
 
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item) => {
     if (onItemClick) {
       onItemClick(item);
     }

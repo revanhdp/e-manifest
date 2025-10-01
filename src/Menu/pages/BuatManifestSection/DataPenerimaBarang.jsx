@@ -1,12 +1,7 @@
 import React from 'react';
 import { Building2, Newspaper, CircleUserRound, MapPin } from 'lucide-react';
 
-interface DataPemilikBarangProps {
-  formData: Record<string, string>;
-  handleInputChange: (field: string, value: string) => void;
-}
-
-const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
+const DataPenerimaBarang = ({
   formData,
   handleInputChange
 }) => {
@@ -24,9 +19,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: PT Sejahtera Abadi"
-              value={formData.namaPerusahaan as string}
-              onChange={(e) => handleInputChange('namaPerusahaan', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.namaPerusahaanPenerima}
+              onChange={(e) => handleInputChange('namaPerusahaanPenerima', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           <div>
@@ -34,9 +29,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: 0812 3456 7890"
-              value={formData.nomorTelefonPerusahaan as string}
-              onChange={(e) => handleInputChange('nomorTelefonPerusahaan', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.nomorTelefonPerusahaanPenerima}
+              onChange={(e) => handleInputChange('nomorTelefonPerusahaanPenerima', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
@@ -54,9 +49,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: 1234567890123"
-              value={formData.nibPerusahaanDetail}
-              onChange={(e) => handleInputChange('nibPerusahaanDetail', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.nibPerusahaanDetailPenerima}
+              onChange={(e) => handleInputChange('nibPerusahaanDetailPenerima', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           <div>
@@ -64,9 +59,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: SK.123/AB/IV/2025"
-              value={formData.nomor_oss}
-              onChange={(e) => handleInputChange('nomor_oss', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.nomor_ossPenerima}
+              onChange={(e) => handleInputChange('nomor_ossPenerima', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
@@ -84,9 +79,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: Adik Soleh"
-              value={formData.namaPenanggungJawab}
-              onChange={(e) => handleInputChange('namaPenanggungJawab', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.namaPenanggungJawabPenerima}
+              onChange={(e) => handleInputChange('namaPenanggungJawabPenerima', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
           <div>
@@ -94,9 +89,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: 0812 3456 7890"
-              value={formData.nomorHpPenanggungJawab}
-              onChange={(e) => handleInputChange('nomorHpPenanggungJawab', e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={formData.nomorHpPenanggungJawabPenerima}
+              onChange={(e) => handleInputChange('nomorHpPenanggungJawabPenerima', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
@@ -113,9 +108,9 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
           <input
             type="text"
             placeholder="Contoh: Jl. Mawar No. 8, RT 02/RW 03, Bekasi 17145"
-            value={formData.alamatPerusahaan}
-            onChange={(e) => handleInputChange('alamatPerusahaan', e.target.value)}
-            className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={formData.alamatPerusahaanPenerima}
+            onChange={(e) => handleInputChange('alamatPerusahaanPenerima', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
       </div>
@@ -123,4 +118,4 @@ const DataPemilikBarang: React.FC<DataPemilikBarangProps> = ({
   );
 };
 
-export default DataPemilikBarang;
+export default DataPenerimaBarang;

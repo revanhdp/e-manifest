@@ -1,32 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 
-interface PackingItem {
-  id: string;
-  jenisBarang: string;
-  namaBarang: string;
-  jumlah: string;
-  satuan: string;
-}
-
-interface PackingListProps {
-  formData: Record<string, string | PackingItem[]>;
-  handleInputChange: (field: string, value: string | PackingItem[]) => void;
-}
-
-const PackingList: React.FC<PackingListProps> = ({ formData, handleInputChange }) => {
-  const [items, setItems] = useState<PackingItem[]>((formData.packingItems as PackingItem[]) || []);
+const PackingList = ({ formData, handleInputChange }) => {
+  const [items, setItems] = useState(formData.packingItems || []);
   const [newItem, setNewItem] = useState({
     jenisBarang: '',
     namaBarang: '',
     jumlah: '',
     satuan: ''
   });
-  const [editingItemId, setEditingItemId] = useState<string | null>(null);
+  const [editingItemId, setEditingItemId] = useState(null);
 
-  // Sinkronisasi items dengan formData.packingItems saat pertama kali load
   useEffect(() => {
-    const packingItems = (formData.packingItems as PackingItem[]) || [];
+    const packingItems = formData.packingItems || [];
     setItems(packingItems);
   }, [formData.packingItems]);
 
@@ -58,7 +44,7 @@ const PackingList: React.FC<PackingListProps> = ({ formData, handleInputChange }
 
   const handleAddItem = () => {
     if (newItem.jenisBarang && newItem.namaBarang && newItem.jumlah && newItem.satuan) {
-      const item: PackingItem = {
+      const item = {
         id: Date.now().toString(),
         ...newItem
       };
@@ -76,7 +62,7 @@ const PackingList: React.FC<PackingListProps> = ({ formData, handleInputChange }
     }
   };
 
-  const handleEditItem = (id: string) => {
+  const handleEditItem = (id) => {
     const item = items.find(item => item.id === id);
     if (item) {
       setNewItem({
@@ -110,7 +96,7 @@ const PackingList: React.FC<PackingListProps> = ({ formData, handleInputChange }
     }
   };
 
-  const handleDeleteItem = (id: string) => {
+  const handleDeleteItem = (id) => {
     const updatedItems = items.filter(item => item.id !== id);
     setItems(updatedItems);
     handleInputChange('packingItems', updatedItems);

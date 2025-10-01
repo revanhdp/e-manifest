@@ -1,7 +1,7 @@
 import React from 'react';
 import { User } from 'lucide-react';
 
-const ProfilPage: React.FC = () => {
+const ProfilPage = () => {
   return (
     <div className="bg-white p-6">
       <div className="flex items-center justify-between mb-6">

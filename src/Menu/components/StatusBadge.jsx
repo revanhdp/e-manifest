@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface StatusBadgeProps {
-  status: 'Overload' | 'Sesuai';
-  className?: string;
-}
-
-const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className = '' }) => {
+const StatusBadge = ({ status, className = '' }) => {
   const getStatusStyles = () => {
     switch (status) {
       case 'Overload':

@@ -4,17 +4,7 @@ import DropdownFilter from '../components/DropdownFilter';
 import ManifestTable from '../components/ManifestTable';
 import BuatManifestPage from './BuatManifestPage';
 
-interface ManifestData {
-  id: string;
-  manifest: string;
-  kategoriMuatan: string;
-  jenisMuatan: string;
-  lokasiPengiriman: string;
-  status: 'Overload' | 'Sesuai';
-  tanggalBuat: string;
-}
-
-const ManifestPage: React.FC = () => {
+const ManifestPage = () => {
   const [showBuatManifest, setShowBuatManifest] = useState(false);
   const [filters, setFilters] = useState({
     kategoriMuatan: '',
@@ -22,8 +12,8 @@ const ManifestPage: React.FC = () => {
     status: ''
   });
 
-  // Sample data based on the image
-  const manifestData: ManifestData[] = [
+  // Sample data
+  const manifestData = [
     {
       id: '1',
       manifest: 'SMB-001/SMK/2025',
@@ -74,7 +64,7 @@ const ManifestPage: React.FC = () => {
     { value: 'sesuai', label: 'Sesuai' }
   ];
 
-  const handleFilterChange = (filterType: string, value: string) => {
+  const handleFilterChange = (filterType, value) => {
     setFilters(prev => ({
       ...prev,
       [filterType]: value

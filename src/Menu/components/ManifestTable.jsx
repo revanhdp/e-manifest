@@ -1,21 +1,7 @@
 import React from 'react';
 import StatusBadge from './StatusBadge';
 
-interface ManifestData {
-  id: string;
-  manifest: string;
-  kategoriMuatan: string;
-  jenisMuatan: string;
-  lokasiPengiriman: string;
-  status: 'Overload' | 'Sesuai';
-  tanggalBuat: string;
-}
-
-interface ManifestTableProps {
-  data: ManifestData[];
-}
-
-const ManifestTable: React.FC<ManifestTableProps> = ({ data }) => {
+const ManifestTable = ({ data }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
       <div className="overflow-x-auto">

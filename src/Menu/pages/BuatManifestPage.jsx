@@ -4,47 +4,10 @@ import DataPemilikBarang from './BuatManifestSection/DataPemilikBarang';
 import DataPenerimaBarang from './BuatManifestSection/DataPenerimaBarang';
 import PackingList from './BuatManifestSection/PackingList';
 
-interface BuatManifestPageProps {
-  onBack: () => void;
-}
-
-interface PackingItem {
-  id: string;
-  jenisBarang: string;
-  namaBarang: string;
-  jumlah: string;
-  satuan: string;
-}
-
-interface FormData {
-  // Step 1 data
-  nibPerusahaan: string;
-  namaPerusahaan: string;
-  nomorTelefonPerusahaan: string;
-  nibPerusahaanDetail: string;
-  nomor_oss: string;
-  namaPenanggungJawab: string;
-  nomorHpPenanggungJawab: string;
-  alamatPerusahaan: string;
-  // Step 2 data
-  nibPerusahaanPenerima: string;
-  namaPerusahaanPenerima: string;
-  nomorTelefonPerusahaanPenerima: string;
-  nibPerusahaanDetailPenerima: string;
-  nomor_ossPenerima: string;
-  namaPenanggungJawabPenerima: string;
-  nomorHpPenanggungJawabPenerima: string;
-  alamatPerusahaanPenerima: string;
-  // Step 3 data
-  packingItems: PackingItem[];
-  // Index signature to allow flexible access
-  [key: string]: string | PackingItem[];
-}
-
-const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
+const BuatManifestPage = ({ onBack }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isDetailExpanded, setIsDetailExpanded] = useState(true);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     // Step 1 data
     nibPerusahaan: '',
     namaPerusahaan: '',
@@ -75,7 +38,7 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
     { number: 5, title: 'Rute perjalanan', active: currentStep === 5 }
   ];
 
-  const handleInputChange = (field: string, value: string | PackingItem[]) => {
+  const handleInputChange = (field, value) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -93,7 +56,7 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
   };
 
   // Validasi untuk setiap step
-  const validateStep = (stepNumber: number): boolean => {
+  const validateStep = (stepNumber) => {
     switch (stepNumber) {
       case 1:
         return !!(
@@ -130,9 +93,9 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
   };
 
   // Cek apakah step dapat diakses
-  const isStepAccessible = (stepNumber: number): boolean => {
+  const isStepAccessible = (stepNumber) => {
     if (stepNumber <= currentStep) {
-      return true; // Selalu bisa kembali ke step sebelumnya
+      return true;
     }
     
     // Untuk maju ke step berikutnya, harus validasi step sebelumnya
@@ -145,7 +108,7 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
   };
 
   // Handle click pada stepper
-  const handleStepClick = (stepNumber: number) => {
+  const handleStepClick = (stepNumber) => {
     if (isStepAccessible(stepNumber)) {
       setCurrentStep(stepNumber);
     }
@@ -169,14 +132,14 @@ const BuatManifestPage: React.FC<BuatManifestPageProps> = ({ onBack }) => {
     if (currentStep === 1) {
       return (
         <DataPemilikBarang 
-          formData={formData as Record<string, string>}
+          formData={formData}
           handleInputChange={handleInputChange}
         />
       );
     } else if (currentStep === 2) {
       return (
         <DataPenerimaBarang 
-          formData={formData as Record<string, string>}
+          formData={formData}
           handleInputChange={handleInputChange}
         />
       );

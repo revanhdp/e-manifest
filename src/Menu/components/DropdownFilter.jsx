@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 
-interface DropdownFilterProps {
-  label: string;
-  placeholder: string;
-  options: { value: string; label: string }[];
-  value?: string;
-  onChange?: (value: string) => void;
-  className?: string;
-}
-
-const DropdownFilter: React.FC<DropdownFilterProps> = ({
+const DropdownFilter = ({
   label,
   placeholder,
   options,
@@ -20,7 +11,7 @@ const DropdownFilter: React.FC<DropdownFilterProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelect = (selectedValue: string) => {
+  const handleSelect = (selectedValue) => {
     if (onChange) {
       onChange(selectedValue);
     }

@@ -2,7 +2,7 @@ import React from "react";
 import { CircleUserRound, CopyCheck, Plus, Search, Truck } from "lucide-react";
 import ManifestPage from "./ManifestPage";
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   return (
     <>
       <div className="">

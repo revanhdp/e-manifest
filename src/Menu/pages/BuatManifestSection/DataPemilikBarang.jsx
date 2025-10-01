@@ -1,18 +1,13 @@
 import React from 'react';
 import { Building2, Newspaper, CircleUserRound, MapPin } from 'lucide-react';
 
-interface DataPenerimaBarangProps {
-  formData: Record<string, string>;
-  handleInputChange: (field: string, value: string) => void;
-}
-
-const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
+const DataPemilikBarang = ({
   formData,
   handleInputChange
 }) => {
   return (
     <>
-      {/* Identitas Perusahaan Section - Step 2 */}
+      {/* Identitas Perusahaan Section */}
       <div className="space-y-4">
         <h4 className="font-medium text-gray-900 flex items-center gap-2">
           <Building2 className="w-5 h-5" />
@@ -24,8 +19,8 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: PT Sejahtera Abadi"
-              value={formData.namaPerusahaanPenerima}
-              onChange={(e) => handleInputChange('namaPerusahaanPenerima', e.target.value)}
+              value={formData.namaPerusahaan}
+              onChange={(e) => handleInputChange('namaPerusahaan', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -34,15 +29,15 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: 0812 3456 7890"
-              value={formData.nomorTelefonPerusahaanPenerima}
-              onChange={(e) => handleInputChange('nomorTelefonPerusahaanPenerima', e.target.value)}
+              value={formData.nomorTelefonPerusahaan}
+              onChange={(e) => handleInputChange('nomorTelefonPerusahaan', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
       </div>
 
-      {/* Legal & Perizinan Section - Step 2 */}
+      {/* Legal & Perizinan Section */}
       <div className="space-y-4">
         <h4 className="font-medium text-gray-900 flex items-center gap-2">
           <Newspaper className="w-5 h-5" />
@@ -54,8 +49,8 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: 1234567890123"
-              value={formData.nibPerusahaanDetailPenerima}
-              onChange={(e) => handleInputChange('nibPerusahaanDetailPenerima', e.target.value)}
+              value={formData.nibPerusahaanDetail}
+              onChange={(e) => handleInputChange('nibPerusahaanDetail', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -64,15 +59,15 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: SK.123/AB/IV/2025"
-              value={formData.nomor_ossPenerima}
-              onChange={(e) => handleInputChange('nomor_ossPenerima', e.target.value)}
+              value={formData.nomor_oss}
+              onChange={(e) => handleInputChange('nomor_oss', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
       </div>
 
-      {/* Kontak Penanggung Jawab Section - Step 2 */}
+      {/* Kontak Penanggung Jawab Section */}
       <div className="space-y-4">
         <h4 className="font-medium text-gray-900 flex items-center gap-2">
           <CircleUserRound className="w-5 h-5" />
@@ -84,8 +79,8 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: Adik Soleh"
-              value={formData.namaPenanggungJawabPenerima}
-              onChange={(e) => handleInputChange('namaPenanggungJawabPenerima', e.target.value)}
+              value={formData.namaPenanggungJawab}
+              onChange={(e) => handleInputChange('namaPenanggungJawab', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -94,15 +89,15 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
             <input
               type="text"
               placeholder="Contoh: 0812 3456 7890"
-              value={formData.nomorHpPenanggungJawabPenerima}
-              onChange={(e) => handleInputChange('nomorHpPenanggungJawabPenerima', e.target.value)}
+              value={formData.nomorHpPenanggungJawab}
+              onChange={(e) => handleInputChange('nomorHpPenanggungJawab', e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
         </div>
       </div>
 
-      {/* Alamat Section - Step 2 */}
+      {/* Alamat Section */}
       <div className="space-y-4">
         <h4 className="font-medium text-gray-900 flex items-center gap-2">
           <MapPin className="w-5 h-5" />
@@ -113,8 +108,8 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
           <input
             type="text"
             placeholder="Contoh: Jl. Mawar No. 8, RT 02/RW 03, Bekasi 17145"
-            value={formData.alamatPerusahaanPenerima}
-            onChange={(e) => handleInputChange('alamatPerusahaanPenerima', e.target.value)}
+            value={formData.alamatPerusahaan}
+            onChange={(e) => handleInputChange('alamatPerusahaan', e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
@@ -123,4 +118,4 @@ const DataPenerimaBarang: React.FC<DataPenerimaBarangProps> = ({
   );
 };
 
-export default DataPenerimaBarang;
+export default DataPemilikBarang;

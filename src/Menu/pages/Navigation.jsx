@@ -6,10 +6,10 @@ import KendaraanPage from './KendaraanPage';
 import PengemudiPage from './PengemudiPage';
 import ProfilPage from './ProfilPage';
 
-const Navigation: React.FC = () => {
+const Navigation = () => {
   const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
 
-  const handleMenuItemClick = (item: string) => {
+  const handleMenuItemClick = (item) => {
     setActiveMenuItem(item);
     
     // Handle logout
